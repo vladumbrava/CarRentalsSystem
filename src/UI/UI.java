@@ -160,6 +160,7 @@ public class UI {
 
     public void runShowCarsByFuelTypeOption(){
         System.out.println("Enter fuel type: ");
+        scanner.nextLine();
         String fuelTypeStr = scanner.nextLine();
         FuelType fuelType = FuelType.valueOf(fuelTypeStr.toLowerCase());
         FilterCarByFuelType filterCarByFuelType = new FilterCarByFuelType(fuelType);
