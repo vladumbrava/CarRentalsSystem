@@ -31,8 +31,24 @@ public class TextFileRentalRepository extends FileRepository<UUID, Rental> {
     }
 
     private static Rental buildRentalFromTokens(String[] tokens) {
-        String carIDString = tokens[0];
-        UUID carID = UUID.fromString(carIDString);
+        String modelName = tokens[0];
+        //find car id by model name from file
+        //read carsWrite.txt, find the modelName and associated UUID
+        UUID carID = null;
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("data/carsWrite.txt"))) {
+            String currentLine;
+            while ((currentLine = bufferedReader.readLine()) != null) {
+                String [] tokensCar = currentLine.split(",");
+                if (tokensCar.length != 6) {
+                    continue;
+                }
+                if (tokensCar[1].equals(modelName)){
+                    carID = UUID.fromString(tokensCar[0]);
+                }
+            }
+        } catch (IOException ioException){
+            throw new RuntimeException(ioException);
+        }
         int dayOfReturnDate = Integer.parseInt(tokens[1]);
         int monthOfReturnDate = Integer.parseInt(tokens[2]);
         int yearOfReturnDate = Integer.parseInt(tokens[3]);
@@ -46,11 +62,7 @@ public class TextFileRentalRepository extends FileRepository<UUID, Rental> {
             Iterator<Rental> rentalIterator = super.iterator();
             while (rentalIterator.hasNext()) {
                 Rental rentalToWrite = rentalIterator.next();
-                bufferedWriter.write("Rental{" +
-                        "rentalID='" + rentalToWrite.getID() +
-                        ", carID='" + rentalToWrite.getCarID() +
-                        ", returnDate=" + rentalToWrite.getReturnDate() +
-                        "}"+"\n");
+                bufferedWriter.write(rentalToWrite.getID() + "," + rentalToWrite.getCarID() + "," + rentalToWrite.getReturnDate());
             }
         } catch (IOException ioException) {
             System.out.println("Error: " + ioException.getMessage());

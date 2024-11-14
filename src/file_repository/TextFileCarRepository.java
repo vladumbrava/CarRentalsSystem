@@ -47,14 +47,8 @@ public class TextFileCarRepository extends FileRepository<UUID, Car> {
             Iterator<Car> carFileIterator = super.iterator();
             while (carFileIterator.hasNext()) {
                 Car carToWrite = carFileIterator.next();
-                bufferedWriter.write("Car{" +
-                        "id='" + carToWrite.getID() +
-                        ", modelName='" + carToWrite.getModelName() +
-                        ", horsePower=" + carToWrite.getHorsePower() +
-                        ", numberSeats=" + carToWrite.getNumberSeats() +
-                        ", fuelType=" + carToWrite.getFuelType() +
-                        ", colour=" + carToWrite.getColour() +
-                        "}"+"\n");
+                bufferedWriter.write(carToWrite.getID()+","+carToWrite.getModelName()+","+carToWrite.getHorsePower()+","+
+                        carToWrite.getNumberSeats()+","+carToWrite.getFuelType()+","+carToWrite.getColour());
             }
         } catch (IOException ioException) {
             throw new RuntimeException(ioException);
