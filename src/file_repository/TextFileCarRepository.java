@@ -22,19 +22,23 @@ public class TextFileCarRepository extends FileRepository<UUID, Car> {
                 if (tokens.length != 5) {
                     continue;
                 }
-                String modelName = tokens[0];
-                int horsePower = Integer.parseInt(tokens[1]);
-                int numberSeats = Integer.parseInt(tokens[2]);
-                String fuelTypeString = tokens[3];
-                FuelType fuelType = FuelType.valueOf(fuelTypeString.toLowerCase());
-                String colourString = tokens[4];
-                Colour colour = Colour.valueOf(colourString.toLowerCase());
-                Car carToRead = new Car(modelName,horsePower,numberSeats,fuelType,colour);
+                Car carToRead = buildCarFromTokens(tokens);
                 super.add(carToRead.getID(),carToRead);
             }
         } catch (IOException ioException) {
             throw new RuntimeException(ioException);
         }
+    }
+
+    private static Car buildCarFromTokens(String[] tokens) {
+        String modelName = tokens[0];
+        int horsePower = Integer.parseInt(tokens[1]);
+        int numberSeats = Integer.parseInt(tokens[2]);
+        String fuelTypeString = tokens[3];
+        FuelType fuelType = FuelType.valueOf(fuelTypeString.toLowerCase());
+        String colourString = tokens[4];
+        Colour colour = Colour.valueOf(colourString.toLowerCase());
+        return new Car(modelName,horsePower,numberSeats,fuelType,colour);
     }
 
     @Override
