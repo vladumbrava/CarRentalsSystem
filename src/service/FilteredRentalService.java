@@ -6,11 +6,12 @@ import filters.AbstractFilter;
 import repository.IRepository;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class FilteredRentalService extends RentalService{
     private final AbstractFilter<Rental> filter;
 
-    public FilteredRentalService(IRepository<String, Rental> rentalRepo, IRepository<String, Car> carRepo,
+    public FilteredRentalService(IRepository<UUID, Rental> rentalRepo, IRepository<UUID, Car> carRepo,
                                  AbstractFilter<Rental> filter) {
         super(rentalRepo, carRepo);
         this.filter = filter;

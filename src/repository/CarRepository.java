@@ -2,5 +2,7 @@ package repository;
 
 import domain.Car;
 
-public class CarRepository extends MemoryRepository<String, Car>{
+import java.util.UUID;
+
+public class CarRepository extends MemoryRepository<UUID, Car>{
 }

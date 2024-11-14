@@ -1,5 +1,5 @@
 package filters;
 
 public interface AbstractFilter<T> {
-    boolean accept(T elem);
+    boolean accept(T objectToCheck);
 }

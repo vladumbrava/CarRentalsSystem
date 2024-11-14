@@ -10,7 +10,7 @@ public class FilterCarByHorsePower implements AbstractFilter<Car>{
     }
 
     @Override
-    public boolean accept(Car car) {
-        return car.getHorsePower() >= horsePower;
+    public boolean accept(Car carToCheck) {
+        return carToCheck.getHorsePower() >= horsePower;
     }
 }

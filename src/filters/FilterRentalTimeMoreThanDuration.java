@@ -14,7 +14,7 @@ public class FilterRentalTimeMoreThanDuration implements AbstractFilter<Rental>{
 
     //rentals that have interval of time more than duration
     @Override
-    public boolean accept(Rental rental) {
-        return LocalDate.now().plusDays(duration.toDays()).isBefore(rental.getReturnDate());
+    public boolean accept(Rental rentalToCheck) {
+        return LocalDate.now().plusDays(duration.toDays()).isBefore(rentalToCheck.getReturnDate());
     }
 }

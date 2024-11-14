@@ -7,42 +7,43 @@ import repository.IRepository;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.UUID;
 
 public class CarService {
-    private final IRepository<String, Car> carRepo;
+    private final IRepository<UUID, Car> carRepo;
 
-    public CarService(IRepository<String, Car> carRepo) {
+    public CarService(IRepository<UUID, Car> carRepo) {
         this.carRepo = carRepo;
     }
 
-    public IRepository<String, Car> getCarRepo() {
+    public IRepository<UUID, Car> getCarRepo() {
         return carRepo;
     }
 
     public void addCar(String modelName, int horsePower, int numberSeats, FuelType fuelType, Colour colour){
-        Car car = new Car(modelName,horsePower,numberSeats,fuelType,colour);
-        carRepo.add(car.getID(),car);
+        Car carToAdd = new Car(modelName,horsePower,numberSeats,fuelType,colour);
+        carRepo.add(carToAdd.getID(),carToAdd);
     }
 
-    public void deleteCar(String carID){
-        if (carRepo.findByID(carID) == null){
+    public void deleteCar(UUID carIDUsedToDelete){
+        if (carRepo.findByID(carIDUsedToDelete) == null){
             throw new IllegalArgumentException("Car ID not found in the repository.");
         }
-        carRepo.delete(carID);
+        carRepo.delete(carIDUsedToDelete);
     }
 
-    public String findCarIDbyModelName(String modelName){
+    public UUID findCarIDbyModelName(String modelNameUsedToFindID){
         //iterate through the car repository map in order to find the key(the id),
         //by the value's (car) attribute modelName, return the id
-        String carID = "";
+        UUID carIDToFind = null;
         Iterator<Car> carIterator = carRepo.iterator();
         while (carIterator.hasNext()){
             Car car = carIterator.next();
-            if (car.getModelName().equals(modelName)){
-                carID = car.getID();
+            if (car.getModelName().equals(modelNameUsedToFindID)){
+                carIDToFind = car.getID();
             }
         }
-        return carID;
+        return carIDToFind;
     }
 
     public ArrayList<Car> getAllCars(){

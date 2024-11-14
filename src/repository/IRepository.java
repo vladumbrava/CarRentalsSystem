@@ -5,11 +5,11 @@ import domain.Identifiable;
 import java.util.Iterator;
 
 public interface IRepository<ID, T extends Identifiable<ID>> {
-    void add(ID id, T elem);
+    void add(ID idToAdd, T objectToAdd);
 
-    void delete(ID id);
+    void delete(ID idToDelete);
 
     Iterator<T> iterator();
 
-    T findByID(ID id);
+    T findByID(ID idUsedToFindObject);
 }

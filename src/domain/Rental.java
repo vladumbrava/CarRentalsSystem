@@ -3,23 +3,23 @@ package domain;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class Rental implements Identifiable<String>{
-    private final String rentalID;
-    private final String carID;
+public class Rental implements Identifiable<UUID>{
+    private final UUID rentalID;
+    private final UUID carID;
     private LocalDate returnDate;
 
-    public Rental(String carID, LocalDate returnDate) {
-        this.rentalID = UUID.randomUUID().toString();
+    public Rental(UUID carID, LocalDate returnDate) {
+        this.rentalID = UUID.randomUUID();
         this.carID = carID;
         this.returnDate = returnDate;
     }
 
     @Override
-    public String getID() {
+    public UUID getID() {
         return rentalID;
     }
 
-    public String getCarID() {
+    public UUID getCarID() {
         return carID;
     }
 

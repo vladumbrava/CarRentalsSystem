@@ -2,6 +2,8 @@ package repository;
 
 import domain.Rental;
 
-public class RentalRepository extends MemoryRepository<String, Rental>{
+import java.util.UUID;
+
+public class RentalRepository extends MemoryRepository<UUID, Rental>{
 
 }

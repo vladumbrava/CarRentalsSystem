@@ -8,13 +8,13 @@ public class MemoryRepository<ID, T extends Identifiable<ID>> implements IReposi
     protected final HashMap<ID, T> map = new HashMap<>();
 
     @Override
-    public void add(ID id, T elem) {
-        map.put(id, elem);
+    public void add(ID idToAdd, T objectToAdd) {
+        map.put(idToAdd, objectToAdd);
     }
 
     @Override
-    public void delete(ID id) {
-        map.remove(id);
+    public void delete(ID idToDelete) {
+        map.remove(idToDelete);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class MemoryRepository<ID, T extends Identifiable<ID>> implements IReposi
     }
 
     @Override
-    public T findByID(ID id) {
-        return map.get(id);
+    public T findByID(ID idUsedToFindObject) {
+        return map.get(idUsedToFindObject);
     }
 }

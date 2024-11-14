@@ -10,7 +10,7 @@ public class FilterCarByNumSeats implements AbstractFilter<Car>{
     }
 
     @Override
-    public boolean accept(Car car) {
-        return car.getNumberSeats() == numberSeats;
+    public boolean accept(Car carToCheck) {
+        return carToCheck.getNumberSeats() == numberSeats;
     }
 }

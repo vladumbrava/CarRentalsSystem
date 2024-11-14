@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
-public class Car implements Identifiable<String> {
-    private final String carID;
+public class Car implements Identifiable<UUID> {
+    private final UUID carID;
     private String modelName;
     private int horsePower;
     private int numberSeats;
@@ -23,7 +23,7 @@ public class Car implements Identifiable<String> {
         if (horsePower <= 0){
             throw new IllegalArgumentException("Incorrect value for 'horsePower'");
         }
-        this.carID = UUID.randomUUID().toString();
+        this.carID = UUID.randomUUID();
         this.modelName = modelName;
         this.horsePower = horsePower;
         this.numberSeats = numberSeats;
@@ -78,7 +78,7 @@ public class Car implements Identifiable<String> {
     }
 
     @Override
-    public String getID() {
+    public UUID getID() {
         return carID;
     }
 

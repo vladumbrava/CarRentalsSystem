@@ -14,6 +14,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class UI {
     private final CarService carService;
@@ -75,7 +76,7 @@ public class UI {
     public void runRemoveCarOption(){
         System.out.println("Enter car's model name: ");
         String carModelName = scanner.nextLine();
-        String carID = carService.findCarIDbyModelName(carModelName);
+        UUID carID = carService.findCarIDbyModelName(carModelName);
         carService.deleteCar(carID);
     }
 
@@ -104,7 +105,7 @@ public class UI {
     public void runRentCarOption(){
         System.out.println("Enter car's model name: ");
         String modelName = scanner.nextLine();
-        String carID = carService.findCarIDbyModelName(modelName);
+        UUID carID = carService.findCarIDbyModelName(modelName);
         System.out.println("Enter return date: ");
         System.out.println("Day: ");
         int day = scanner.nextInt();
@@ -122,7 +123,7 @@ public class UI {
     public void runCancelRentalOption(){
         System.out.println("Enter car's model name: ");
         String modelName = scanner.nextLine();
-        String carID = carService.findCarIDbyModelName(modelName);
+        UUID carID = carService.findCarIDbyModelName(modelName);
         for (Rental rental : rentalService.getAllRentals()){
             if (rental.getCarID().equals(carID)){
                 rentalService.deleteRental(rental.getID());

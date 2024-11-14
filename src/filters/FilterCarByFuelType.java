@@ -11,7 +11,7 @@ public class FilterCarByFuelType implements AbstractFilter<Car>{
     }
 
     @Override
-    public boolean accept(Car car) {
-        return fuelType.equals(car.getFuelType());
+    public boolean accept(Car carToCheck) {
+        return fuelType.equals(carToCheck.getFuelType());
     }
 }

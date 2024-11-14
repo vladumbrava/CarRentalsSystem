@@ -13,7 +13,7 @@ public class FilterRentalInProgressAtDate implements AbstractFilter<Rental>{
 
     // rentals that are still in progress at 'date'
     @Override
-    public boolean accept(Rental rental) {
-        return rental.getReturnDate().isAfter(date);
+    public boolean accept(Rental rentalToCheck) {
+        return rentalToCheck.getReturnDate().isAfter(date);
     }
 }

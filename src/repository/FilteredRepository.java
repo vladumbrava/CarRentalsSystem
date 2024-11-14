@@ -11,9 +11,9 @@ public class FilteredRepository<ID, T extends Identifiable<ID>> extends MemoryRe
     }
 
     @Override
-    public void add(ID id, T elem) {
-        if (filter.accept(elem))
-            super.add(id, elem);
+    public void add(ID idToAdd, T objectToAddIfCompliant) {
+        if (filter.accept(objectToAddIfCompliant))
+            super.add(idToAdd, objectToAddIfCompliant);
     }
 
     public void setFilter(AbstractFilter<T> filter) {
