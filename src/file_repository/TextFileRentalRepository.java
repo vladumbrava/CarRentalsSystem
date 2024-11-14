@@ -9,8 +9,8 @@ import java.util.UUID;
 
 public class TextFileRentalRepository extends FileRepository<UUID, Rental> {
 
-    public TextFileRentalRepository(String fileName) {
-        super(fileName);
+    public TextFileRentalRepository(String fileName, String writeFileName) {
+        super(fileName,writeFileName);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class TextFileRentalRepository extends FileRepository<UUID, Rental> {
 
     @Override
     void writeToFile() {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.fileName))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.writeFileName))) {
             Iterator<Rental> rentalIterator = super.iterator();
             while (rentalIterator.hasNext()) {
                 Rental rentalToWrite = rentalIterator.next();

@@ -5,9 +5,11 @@ import repository.MemoryRepository;
 
 public abstract class FileRepository<ID,T extends Identifiable<ID>> extends MemoryRepository<ID,T> {
     protected String fileName;
+    protected String writeFileName;
 
-    public FileRepository(String fileName) {
+    public FileRepository(String fileName, String writeFileName) {
         this.fileName = fileName;
+        this.writeFileName = writeFileName;
         this.readFromFile();
     }
 

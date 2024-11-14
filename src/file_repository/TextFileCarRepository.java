@@ -9,8 +9,8 @@ import java.util.Iterator;
 import java.util.UUID;
 
 public class TextFileCarRepository extends FileRepository<UUID, Car> {
-    public TextFileCarRepository(String fileName) {
-        super(fileName);
+    public TextFileCarRepository(String fileName, String writeFileName) {
+        super(fileName,writeFileName);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class TextFileCarRepository extends FileRepository<UUID, Car> {
 
     @Override
     void writeToFile() {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.fileName))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.writeFileName))) {
             Iterator<Car> carFileIterator = super.iterator();
             while (carFileIterator.hasNext()) {
                 Car carToWrite = carFileIterator.next();

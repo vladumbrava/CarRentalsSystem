@@ -1,0 +1,2 @@
+Car{id='7132e1e1-3a41-45bd-a1e3-be2d425dcb39, modelName='renou, horsePower=120, numberSeats=2, fuelType=diesel, colour=red}
+Car{id='10e1d342-6e8e-4bd1-9459-1bac7a1a9ef4, modelName='vw passat, horsePower=130, numberSeats=5, fuelType=diesel, colour=black}
