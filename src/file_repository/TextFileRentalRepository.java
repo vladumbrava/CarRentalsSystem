@@ -15,7 +15,7 @@ public class TextFileRentalRepository extends FileRepository<UUID, Rental> {
 
     @Override
     void readFromFile() {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.fileName))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.readFileName))) {
             String currentLine;
             while ((currentLine = bufferedReader.readLine()) != null) {
                 String [] tokens = currentLine.split(",");

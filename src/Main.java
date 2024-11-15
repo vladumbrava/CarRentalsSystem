@@ -1,6 +1,8 @@
 
 import domain.Car;
 import domain.Rental;
+import file_repository.BinaryFileCarRepository;
+import file_repository.BinaryFileRentalRepository;
 import file_repository.TextFileCarRepository;
 import file_repository.TextFileRentalRepository;
 import repository.CarRepository;
@@ -20,6 +22,18 @@ public class Main {
         IRepository<UUID, Car> carRepo = setCarRepositoryImplementation();
         IRepository<UUID, Rental> rentalRepo = setRentalRepositoryImplementation();
 
+        try {
+            carRepo.addInitialObjects();
+        } catch (Exception exception){
+            System.out.println("Error adding initial cars");
+        }
+
+        try {
+            rentalRepo.addInitialObjects();
+        } catch (Exception exception){
+            System.out.println("Error adding initial cars");
+        }
+        
         CarService carService = new CarService(carRepo);
         RentalService rentalService = new RentalService(rentalRepo,carRepo);
         UI ui = new UI(carService,rentalService);
@@ -39,8 +53,8 @@ public class Main {
 
             if (repoType.equals("text"))
                 carRepository = new TextFileCarRepository(repoPath,writePath);
-//            if (repoType.equals("binary"))
-//                carRepository = new BinaryFileDoctorsRepository(repoPath);
+            if (repoType.equals("binary"))
+                carRepository = new BinaryFileCarRepository(repoPath,writePath);
             if (repoType.equals("memory"))
                 carRepository = new CarRepository();
 
@@ -66,8 +80,8 @@ public class Main {
 
             if (repoType.equals("text"))
                 rentalRepository = new TextFileRentalRepository(repoPath,writePath);
-//            if (repoType.equals("binary"))
-//                rentalRepository = new BinaryFileDoctorsRepository(repoPath);
+            if (repoType.equals("binary"))
+                rentalRepository = new BinaryFileRentalRepository(repoPath,writePath);
             if (repoType.equals("memory"))
                 rentalRepository = new RentalRepository();
 

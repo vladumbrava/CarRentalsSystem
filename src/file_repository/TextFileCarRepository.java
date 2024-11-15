@@ -9,13 +9,13 @@ import java.util.Iterator;
 import java.util.UUID;
 
 public class TextFileCarRepository extends FileRepository<UUID, Car> {
-    public TextFileCarRepository(String fileName, String writeFileName) {
-        super(fileName,writeFileName);
+    public TextFileCarRepository(String readFileName, String writeFileName) {
+        super(readFileName,writeFileName);
     }
 
     @Override
     void readFromFile() {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.fileName))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.readFileName))) {
             String currentLine;
             while ((currentLine = bufferedReader.readLine()) != null) {
                 String [] tokens = currentLine.split(",");

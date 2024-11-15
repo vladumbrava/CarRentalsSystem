@@ -4,11 +4,11 @@ import domain.Identifiable;
 import repository.MemoryRepository;
 
 public abstract class FileRepository<ID,T extends Identifiable<ID>> extends MemoryRepository<ID,T> {
-    protected String fileName;
+    protected String readFileName;
     protected String writeFileName;
 
-    public FileRepository(String fileName, String writeFileName) {
-        this.fileName = fileName;
+    public FileRepository(String readFileName, String writeFileName) {
+        this.readFileName = readFileName;
         this.writeFileName = writeFileName;
         this.readFromFile();
     }

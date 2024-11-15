@@ -12,4 +12,6 @@ public interface IRepository<ID, T extends Identifiable<ID>> {
     Iterator<T> iterator();
 
     T findByID(ID idUsedToFindObject);
+
+    void addInitialObjects();
 }

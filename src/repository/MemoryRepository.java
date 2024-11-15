@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class MemoryRepository<ID, T extends Identifiable<ID>> implements IRepository<ID, T> {
-    protected final HashMap<ID, T> map = new HashMap<>();
+    protected HashMap<ID, T> map = new HashMap<>();
 
     @Override
     public void add(ID idToAdd, T objectToAdd) {
@@ -25,5 +25,10 @@ public class MemoryRepository<ID, T extends Identifiable<ID>> implements IReposi
     @Override
     public T findByID(ID idUsedToFindObject) {
         return map.get(idUsedToFindObject);
+    }
+
+    @Override
+    public void addInitialObjects() {
+
     }
 }
