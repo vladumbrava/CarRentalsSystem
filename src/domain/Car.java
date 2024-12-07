@@ -1,11 +1,16 @@
 package domain;
 
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
-public class Car implements Identifiable<UUID> {
+public class Car implements Identifiable<UUID>, Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private final UUID carID;
     private String modelName;
     private int horsePower;

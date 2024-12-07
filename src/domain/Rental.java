@@ -1,9 +1,14 @@
 package domain;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class Rental implements Identifiable<UUID>{
+public class Rental implements Identifiable<UUID>, Serializable {
+    @Serial
+    private final static long serialVersionUID = 1L;
+
     private final UUID rentalID;
     private final UUID carID;
     private LocalDate returnDate;

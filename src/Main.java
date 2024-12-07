@@ -71,7 +71,7 @@ public class Main {
         IRepository<UUID, Rental> rentalRepository = null;
 
         try {
-            prop.load(new FileReader("configs//settings.properties"));
+            prop.load(new FileReader("configs/settings.properties"));
 
             String repoType = prop.getProperty("repositoryType");
             String repoPath = prop.getProperty("rentalFilePath");
