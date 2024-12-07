@@ -1,2 +1,3 @@
-vw passat,130,5,diesel,black
-renou,120,2,diesel,red
+7608c15d-7c74-4f55-9481-90bd774bb886,vw benga,130,5,diesel,red
+0090e40e-c3f3-487d-b541-ff9480c9dbeb,vw passat,130,5,diesel,black
+02a11dcf-77e5-4558-957a-7c80af6b000a,renou,120,2,diesel,red

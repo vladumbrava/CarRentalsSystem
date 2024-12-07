@@ -9,13 +9,13 @@ import java.util.UUID;
 
 public class TextFileRentalRepository extends FileRepository<UUID, Rental> {
 
-    public TextFileRentalRepository(String fileName, String writeFileName) {
-        super(fileName,writeFileName);
+    public TextFileRentalRepository(String fileName) {
+        super(fileName);
     }
 
     @Override
     void readFromFile() {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.readFileName))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.fileName))) {
             String currentLine;
             while ((currentLine = bufferedReader.readLine()) != null) {
                 String [] tokens = currentLine.split(",");
@@ -33,9 +33,8 @@ public class TextFileRentalRepository extends FileRepository<UUID, Rental> {
     private static Rental buildRentalFromTokens(String[] tokens) {
         String modelName = tokens[0];
         //find car id by model name from file
-        //read carsWrite.txt, find the modelName and associated UUID
         UUID carID = null;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("data/carsWrite.txt"))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("data/cars.txt"))) {
             String currentLine;
             while ((currentLine = bufferedReader.readLine()) != null) {
                 String [] tokensCar = currentLine.split(",");
@@ -58,11 +57,12 @@ public class TextFileRentalRepository extends FileRepository<UUID, Rental> {
 
     @Override
     void writeToFile() {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.writeFileName))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.fileName))) {
             Iterator<Rental> rentalIterator = super.iterator();
             while (rentalIterator.hasNext()) {
                 Rental rentalToWrite = rentalIterator.next();
                 bufferedWriter.write(rentalToWrite.getID() + "," + rentalToWrite.getCarID() + "," + rentalToWrite.getReturnDate());
+                bufferedWriter.newLine();
             }
         } catch (IOException ioException) {
             System.out.println("Error: " + ioException.getMessage());

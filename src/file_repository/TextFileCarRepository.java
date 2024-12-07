@@ -9,13 +9,14 @@ import java.util.Iterator;
 import java.util.UUID;
 
 public class TextFileCarRepository extends FileRepository<UUID, Car> {
-    public TextFileCarRepository(String readFileName, String writeFileName) {
-        super(readFileName,writeFileName);
+
+    public TextFileCarRepository(String fileName) {
+        super(fileName);
     }
 
     @Override
     void readFromFile() {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.readFileName))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.fileName))) {
             String currentLine;
             while ((currentLine = bufferedReader.readLine()) != null) {
                 String [] tokens = currentLine.split(",");
@@ -43,12 +44,13 @@ public class TextFileCarRepository extends FileRepository<UUID, Car> {
 
     @Override
     void writeToFile() {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.writeFileName))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.fileName))) {
             Iterator<Car> carFileIterator = super.iterator();
             while (carFileIterator.hasNext()) {
                 Car carToWrite = carFileIterator.next();
                 bufferedWriter.write(carToWrite.getID()+","+carToWrite.getModelName()+","+carToWrite.getHorsePower()+","+
                         carToWrite.getNumberSeats()+","+carToWrite.getFuelType()+","+carToWrite.getColour());
+                bufferedWriter.newLine();
             }
         } catch (IOException ioException) {
             throw new RuntimeException(ioException);

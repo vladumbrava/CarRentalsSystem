@@ -13,13 +13,13 @@ import java.util.UUID;
 
 public class BinaryFileCarRepository extends  FileRepository<UUID, Car> {
 
-    public BinaryFileCarRepository(String readFileName, String writeFileName) {
-        super(readFileName, writeFileName);
+    public BinaryFileCarRepository(String fileName) {
+        super(fileName);
     }
 
     @Override
     void readFromFile() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(this.readFileName))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(this.fileName))) {
             this.map = (java.util.HashMap<UUID, Car>) ois.readObject();
         } catch (Exception exception) {
             System.out.println("Error: " + exception.getMessage());
@@ -28,7 +28,7 @@ public class BinaryFileCarRepository extends  FileRepository<UUID, Car> {
 
     @Override
     void writeToFile() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(this.writeFileName))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(this.fileName))) {
             oos.writeObject(this.map);
         } catch (Exception exception) {
             System.out.println("Error: " + exception.getMessage());

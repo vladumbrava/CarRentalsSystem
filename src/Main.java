@@ -49,12 +49,11 @@ public class Main {
 
             String repoType = prop.getProperty("repositoryType");
             String repoPath = prop.getProperty("carFilePath");
-            String writePath = prop.getProperty("carWriteFilePath");
 
             if (repoType.equals("text"))
-                carRepository = new TextFileCarRepository(repoPath,writePath);
+                carRepository = new TextFileCarRepository(repoPath);
             if (repoType.equals("binary"))
-                carRepository = new BinaryFileCarRepository(repoPath,writePath);
+                carRepository = new BinaryFileCarRepository(repoPath);
             if (repoType.equals("memory"))
                 carRepository = new CarRepository();
 
@@ -76,12 +75,11 @@ public class Main {
 
             String repoType = prop.getProperty("repositoryType");
             String repoPath = prop.getProperty("rentalFilePath");
-            String writePath = prop.getProperty("rentalWriteFilePath");
 
             if (repoType.equals("text"))
-                rentalRepository = new TextFileRentalRepository(repoPath,writePath);
+                rentalRepository = new TextFileRentalRepository(repoPath);
             if (repoType.equals("binary"))
-                rentalRepository = new BinaryFileRentalRepository(repoPath,writePath);
+                rentalRepository = new BinaryFileRentalRepository(repoPath);
             if (repoType.equals("memory"))
                 rentalRepository = new RentalRepository();
 
