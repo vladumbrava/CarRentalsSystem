@@ -14,7 +14,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class TestFilteredCarRepository {
+public class FilteredCarRepositoryTest {
     
     private FilteredRepository<UUID, Car> carFilteredRepository;
     private AbstractFilter<Car> carFilter;

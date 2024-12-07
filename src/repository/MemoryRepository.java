@@ -26,9 +26,4 @@ public class MemoryRepository<ID, T extends Identifiable<ID>> implements IReposi
     public T findByID(ID idUsedToFindObject) {
         return map.get(idUsedToFindObject);
     }
-
-    @Override
-    public void addInitialObjects() {
-
-    }
 }

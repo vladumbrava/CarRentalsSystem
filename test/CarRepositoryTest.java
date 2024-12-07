@@ -3,8 +3,6 @@ import domain.Colour;
 import domain.FuelType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import repository.CarRepository;
-import repository.IRepository;
 import repository.MemoryRepository;
 
 import java.util.UUID;
@@ -12,7 +10,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class TestCarRepository {
+public class CarRepositoryTest {
 
     private MemoryRepository<UUID,Car> carRepository;
 
@@ -22,7 +20,7 @@ public class TestCarRepository {
     }
 
     @Test
-    public void testAddCar() {
+    public void givenValidCar_whenAddCar_thenCarIsAdded() {
         Car car = new Car("honda civic", 170, 5, FuelType.hybrid, Colour.blue);
         UUID carId = UUID.randomUUID();
         carRepository.add(carId, car);
@@ -30,35 +28,35 @@ public class TestCarRepository {
     }
 
     @Test
-    public void testAddCarForInvalidNumberSeats() {
-        Car car = null;
-        UUID carID = null;
-        try{
-            car = new Car("vw passat",130,3,FuelType.diesel,Colour.black);
-            carID = UUID.randomUUID();
-            carRepository.add(carID,car);
-        } catch (IllegalArgumentException exception){
-            System.out.println(exception.getMessage());
-        }
-        assertEquals(carRepository.findByID(carID),car);
-    }
-
-    @Test
-    public void testAddCarForInvalidHorsePower() {
+    public void givenInvalidNumberSeats_whenAddCar_thenThrowException() {
         Car car = null;
         UUID carID = null;
         try {
-            car = new Car("vw passat",-5,2,FuelType.diesel,Colour.black);
+            car = new Car("vw passat", 130, 3, FuelType.diesel, Colour.black);
             carID = UUID.randomUUID();
-            carRepository.add(carID,car);
+            carRepository.add(carID, car);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
-        assertEquals(car,carRepository.findByID(carID));
+        assertEquals(carRepository.findByID(carID), car);
     }
 
     @Test
-    public void testFindCar() {
+    public void givenInvalidHorsePower_whenAddCar_thenThrowException() {
+        Car car = null;
+        UUID carID = null;
+        try {
+            car = new Car("vw passat", -5, 2, FuelType.diesel, Colour.black);
+            carID = UUID.randomUUID();
+            carRepository.add(carID, car);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        assertEquals(car, carRepository.findByID(carID));
+    }
+
+    @Test
+    public void givenCarId_whenFindCar_thenReturnCar() {
         Car car = new Car("vw passat", 130, 5, FuelType.diesel, Colour.black);
         UUID carId = UUID.randomUUID();
         carRepository.add(carId, car);
@@ -67,7 +65,7 @@ public class TestCarRepository {
     }
 
     @Test
-    public void testDeleteCar() {
+    public void givenCarId_whenDeleteCar_thenCarIsDeleted() {
         Car car = new Car("vw passat", 130, 5, FuelType.diesel, Colour.black);
         UUID carId = UUID.randomUUID();
         carRepository.add(carId, car);

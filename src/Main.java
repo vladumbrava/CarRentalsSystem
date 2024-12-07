@@ -21,18 +21,6 @@ public class Main {
     public static void main(String[] args) {
         IRepository<UUID, Car> carRepo = setCarRepositoryImplementation();
         IRepository<UUID, Rental> rentalRepo = setRentalRepositoryImplementation();
-
-        try {
-            carRepo.addInitialObjects();
-        } catch (Exception exception){
-            System.out.println("Error adding initial cars");
-        }
-
-        try {
-            rentalRepo.addInitialObjects();
-        } catch (Exception exception){
-            System.out.println("Error adding initial cars");
-        }
         
         CarService carService = new CarService(carRepo);
         RentalService rentalService = new RentalService(rentalRepo,carRepo);
