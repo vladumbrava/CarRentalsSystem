@@ -3,7 +3,7 @@ import domain.Colour;
 import domain.FuelType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import repository.MemoryRepository;
+import repository.CarRepository;
 
 import java.util.UUID;
 
@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class CarRepositoryTest {
 
-    private MemoryRepository<UUID,Car> carRepository;
+    private CarRepository carRepository;
 
     @BeforeEach
     public void setUp() {
-        carRepository = new MemoryRepository<>();
+        carRepository = new CarRepository();
     }
 
     @Test

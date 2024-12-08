@@ -7,7 +7,7 @@ import filters.FilterCarByHorsePower;
 import filters.FilterCarByNumSeats;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import repository.FilteredRepository;
+import repository.FilteredCarRepository;
 
 import java.util.UUID;
 
@@ -16,19 +16,19 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class FilteredCarRepositoryTest {
     
-    private FilteredRepository<UUID, Car> carFilteredRepository;
+    private FilteredCarRepository carFilteredRepository;
     private AbstractFilter<Car> carFilter;
     
     @BeforeEach
     public void setUp() {
-        carFilteredRepository = new FilteredRepository<>(carFilter);
+        carFilteredRepository = new FilteredCarRepository(carFilter);
     }
 
     @Test
     public void testAddCarFilterFuelType() {
         FuelType fuelType = FuelType.diesel;
         carFilter = new FilterCarByFuelType(fuelType);
-        carFilteredRepository = new FilteredRepository<>(carFilter);
+        carFilteredRepository = new FilteredCarRepository(carFilter);
         Car car = new Car("vw passat",130,5,FuelType.diesel, Colour.black);
         UUID carID = UUID.randomUUID();
         carFilteredRepository.add(carID,car);
@@ -39,7 +39,7 @@ public class FilteredCarRepositoryTest {
     public void testAddCarFilterFuelTypeForInvalid() {
         FuelType fuelType = FuelType.gasoline;
         carFilter = new FilterCarByFuelType(fuelType);
-        carFilteredRepository = new FilteredRepository<>(carFilter);
+        carFilteredRepository = new FilteredCarRepository(carFilter);
         Car car = new Car("vw passat",130,5,FuelType.diesel, Colour.black);
         UUID carID = UUID.randomUUID();
         carFilteredRepository.add(carID,car);
@@ -50,7 +50,7 @@ public class FilteredCarRepositoryTest {
     public void testAddCarFilterHorsePower() {
         int horsePower = 100;
         carFilter = new FilterCarByHorsePower(horsePower);
-        carFilteredRepository = new FilteredRepository<>(carFilter);
+        carFilteredRepository = new FilteredCarRepository(carFilter);
         Car car = new Car("vw passat",130,5,FuelType.diesel, Colour.black);
         UUID carID = UUID.randomUUID();
         carFilteredRepository.add(carID,car);
@@ -61,7 +61,7 @@ public class FilteredCarRepositoryTest {
     public void testAddCarFilterHorsePowerInvalid() {
         int horsePower = 150;
         carFilter = new FilterCarByHorsePower(horsePower);
-        carFilteredRepository = new FilteredRepository<>(carFilter);
+        carFilteredRepository = new FilteredCarRepository(carFilter);
         Car car = new Car("vw passat",130,5,FuelType.diesel, Colour.black);
         UUID carID = UUID.randomUUID();
         carFilteredRepository.add(carID,car);
@@ -72,7 +72,7 @@ public class FilteredCarRepositoryTest {
     public void testAddCarFilterNumberSeats() {
         int numberSeats = 5;
         carFilter = new FilterCarByNumSeats(numberSeats);
-        carFilteredRepository = new FilteredRepository<>(carFilter);
+        carFilteredRepository = new FilteredCarRepository(carFilter);
         Car car = new Car("vw passat",130,5,FuelType.diesel, Colour.black);
         UUID carID = UUID.randomUUID();
         carFilteredRepository.add(carID,car);
@@ -83,7 +83,7 @@ public class FilteredCarRepositoryTest {
     public void testAddCarFilterNumberSeatsInvalid() {
         int numberSeats = 2;
         carFilter = new FilterCarByNumSeats(numberSeats);
-        carFilteredRepository = new FilteredRepository<>(carFilter);
+        carFilteredRepository = new FilteredCarRepository(carFilter);
         Car car = new Car("vw passat",130,5,FuelType.diesel, Colour.black);
         UUID carID = UUID.randomUUID();
         carFilteredRepository.add(carID,car);
