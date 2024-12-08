@@ -3,6 +3,7 @@ package service;
 import domain.Car;
 import domain.Rental;
 import repository.IRepository;
+import validator.RentalValidator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class RentalService {
             throw new IllegalArgumentException("Car ID not found in the repository.");
         }
         Rental newRental = new Rental(carID,returnDate);
+        RentalValidator rentalValidator = new RentalValidator();
+        rentalValidator.validateRental(newRental);
         rentalRepo.add(newRental.getID(),newRental);
     }
 

@@ -4,6 +4,7 @@ import domain.Car;
 import domain.Colour;
 import domain.FuelType;
 import repository.IRepository;
+import validator.CarValidator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 public class CarService {
     private final IRepository<UUID, Car> carRepo;
+
 
     public CarService(IRepository<UUID, Car> carRepo) {
         this.carRepo = carRepo;
@@ -22,6 +24,8 @@ public class CarService {
 
     public void addCar(String modelName, int horsePower, int numberSeats, FuelType fuelType, Colour colour){
         Car carToAdd = new Car(modelName,horsePower,numberSeats,fuelType,colour);
+        CarValidator carValidator = new CarValidator();
+        carValidator.validateCar(carToAdd);
         carRepo.add(carToAdd.getID(),carToAdd);
     }
 
