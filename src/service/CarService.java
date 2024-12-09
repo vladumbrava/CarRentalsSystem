@@ -62,11 +62,10 @@ public class CarService {
         return cars;
     }
 
-    public void printVolkswagenDieselCarsDescendingByHorsePower() {
-        //get cars of fuel type diesel which have modelName 'volkswagen...' descending by horsepower
+    public void printGivenMakeDieselCarsDescendingByHorsePower(String make) {
         Car[] allCars = getAllCars().toArray(new Car[0]);
         Arrays.stream(allCars)
-                .filter(car -> car.getModelName().startsWith("Volkswagen"))
+                .filter(car -> car.getModelName().startsWith(make))
                 .filter(car->car.getFuelType().equals(FuelType.diesel))
                 .sorted((car1, car2) -> car2.getHorsePower() - car1.getHorsePower())
                 .forEach(System.out::println);

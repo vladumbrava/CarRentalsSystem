@@ -212,14 +212,16 @@ public class UI {
     }
 
     public void runShowReportsOption() {
-        System.out.println("1. Show volkswagen diesel cars descending by horsePower");
+        System.out.println("1. Show given make diesel cars descending by horsePower");
         System.out.println("2. Show BMW or Audi gasoline cars that are two-seated");
 
         System.out.println("Select report: ");
     }
 
     public void runShowReportOption1() {
-        carService.printVolkswagenDieselCarsDescendingByHorsePower();
+        System.out.println("Enter make: ");
+        String make = scanner.nextLine();
+        carService.printGivenMakeDieselCarsDescendingByHorsePower(make);
     }
 
     public void runShowReportOption2() {
