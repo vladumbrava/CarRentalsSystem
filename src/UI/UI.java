@@ -37,6 +37,7 @@ public class UI {
     private static final int CANCEL_RENTAL_OPTION = 9;
     private static final int REPORTS_OPTION = 10;
     private static final int REPORT_1_OPTION = 1;
+    private static final int REPORT_2_OPTION = 2;
     private static final int EXIT_OPTION = 0;
 
     public UI(CarService carService, RentalService rentalService){
@@ -212,12 +213,17 @@ public class UI {
 
     public void runShowReportsOption() {
         System.out.println("1. Show volkswagen diesel cars descending by horsePower");
+        System.out.println("2. Show BMW or Audi gasoline cars that are two-seated");
 
         System.out.println("Select report: ");
     }
 
-    public void runReport1Option() {
+    public void runShowReportOption1() {
         carService.printVolkswagenDieselCarsDescendingByHorsePower();
+    }
+
+    public void runShowReportOption2() {
+        carService.printBMWorAudiTwoSeatedGasolineCars();
     }
 
     public void run(){
@@ -302,7 +308,11 @@ public class UI {
                     scanner.nextLine();
                     switch (userReportOption){
                         case REPORT_1_OPTION:{
-                            runReport1Option();
+                            runShowReportOption1();
+                            break;
+                        }
+                        case REPORT_2_OPTION:{
+                            runShowReportOption2();
                             break;
                         }
                         default:{

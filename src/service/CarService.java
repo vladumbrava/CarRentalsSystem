@@ -71,4 +71,15 @@ public class CarService {
                 .sorted((car1, car2) -> car2.getHorsePower() - car1.getHorsePower())
                 .forEach(System.out::println);
     }
+
+    public void printBMWorAudiTwoSeatedGasolineCars() {
+        //get 2 seated cars, that are gasoline fueled, BMW or Audi
+        Car[] allCars = getAllCars().toArray(new Car[0]);
+        Arrays.stream(allCars)
+                .filter(car -> car.getNumberSeats() == 2)
+                .filter(car -> car.getFuelType() == FuelType.gasoline)
+                .filter(car -> car.getModelName().startsWith("BMW") || car.getModelName().startsWith("Audi"))
+                .forEach(System.out::println);
+    }
+
 }
