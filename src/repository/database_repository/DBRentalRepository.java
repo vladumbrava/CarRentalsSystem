@@ -4,7 +4,9 @@ import domain.Rental;
 import repository.RentalRepository;
 
 import java.sql.*;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.UUID;
 
 public class DBRentalRepository extends RentalRepository {
@@ -27,7 +29,9 @@ public class DBRentalRepository extends RentalRepository {
             while (resultSet.next()) {
                 UUID rentalID = UUID.fromString(resultSet.getString(1));
                 UUID carID = UUID.fromString(resultSet.getString(2));
-                LocalDate returnDate = resultSet.getDate(3).toLocalDate();
+                long returnDateMillis = resultSet.getLong(3);
+                LocalDate returnDate = Instant.ofEpochMilli(returnDateMillis).atZone(ZoneId.systemDefault()).toLocalDate();
+//                LocalDate returnDate = resultSet.getDate(3).toLocalDate();
                 Rental newRental = new Rental(carID,returnDate);
                 newRental.setRentalID(rentalID);
                 this.map.put(rentalID,newRental);
@@ -47,7 +51,8 @@ public class DBRentalRepository extends RentalRepository {
                      "INSERT INTO Rentals VALUES (?,?,?)")) {
             statement.setString(1,objectToAdd.getID().toString());
             statement.setString(2,objectToAdd.getCarID().toString());
-            statement.setString(3,objectToAdd.getReturnDate().toString());
+            statement.setLong(3, objectToAdd.getReturnDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
+//            statement.setDate(3, Date.valueOf(objectToAdd.getReturnDate()));
             statement.executeUpdate();
         } catch (SQLException exception) {
             throw new RuntimeException(exception);

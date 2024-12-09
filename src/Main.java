@@ -1,6 +1,8 @@
 
 import domain.Car;
 import domain.Rental;
+import repository.database_repository.DBCarRepository;
+import repository.database_repository.DBRentalRepository;
 import repository.file_repository.BinaryFileCarRepository;
 import repository.file_repository.BinaryFileRentalRepository;
 import repository.file_repository.TextFileCarRepository;
@@ -44,6 +46,8 @@ public class Main {
                 carRepository = new BinaryFileCarRepository(repoPath);
             if (repoType.equals("memory"))
                 carRepository = new CarRepository();
+            if (repoType.equals("database"))
+                carRepository = new DBCarRepository(repoPath);
 
             return carRepository;
 
@@ -70,6 +74,8 @@ public class Main {
                 rentalRepository = new BinaryFileRentalRepository(repoPath);
             if (repoType.equals("memory"))
                 rentalRepository = new RentalRepository();
+            if (repoType.equals("database"))
+                rentalRepository = new DBRentalRepository(repoPath);
 
             return rentalRepository;
 
