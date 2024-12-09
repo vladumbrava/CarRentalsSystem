@@ -1,4 +1,4 @@
-package file_repository;
+package repository.file_repository;
 
 import domain.Identifiable;
 import repository.MemoryRepository;

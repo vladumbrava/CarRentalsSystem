@@ -1,10 +1,10 @@
 
 import domain.Car;
 import domain.Rental;
-import file_repository.BinaryFileCarRepository;
-import file_repository.BinaryFileRentalRepository;
-import file_repository.TextFileCarRepository;
-import file_repository.TextFileRentalRepository;
+import repository.file_repository.BinaryFileCarRepository;
+import repository.file_repository.BinaryFileRentalRepository;
+import repository.file_repository.TextFileCarRepository;
+import repository.file_repository.TextFileRentalRepository;
 import repository.CarRepository;
 import repository.IRepository;
 import repository.RentalRepository;

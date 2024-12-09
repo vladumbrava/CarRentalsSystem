@@ -9,9 +9,13 @@ public class Rental implements Identifiable<UUID>, Serializable {
     @Serial
     private final static long serialVersionUID = 1L;
 
-    private final UUID rentalID;
+    private UUID rentalID;
     private final UUID carID;
     private LocalDate returnDate;
+
+    public void setRentalID(UUID rentalID) {
+        this.rentalID = rentalID;
+    }
 
     public Rental(UUID carID, LocalDate returnDate) {
         this.rentalID = UUID.randomUUID();

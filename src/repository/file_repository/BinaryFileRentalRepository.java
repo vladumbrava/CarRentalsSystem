@@ -1,25 +1,24 @@
-package file_repository;
+package repository.file_repository;
 
-import domain.Car;
+import domain.Rental;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class BinaryFileCarRepository extends  FileRepository<UUID, Car> {
+public class BinaryFileRentalRepository extends FileRepository<UUID, Rental>{
 
-    public BinaryFileCarRepository(String fileName) {
+    public BinaryFileRentalRepository(String fileName) {
         super(fileName);
     }
 
     @Override
     void readFromFile() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(this.fileName))) {
-            this.map = (java.util.HashMap<UUID, Car>) ois.readObject();
+            this.map = (java.util.HashMap<UUID, Rental>) ois.readObject();
         } catch (EOFException e) {
             this.map = new HashMap<>();
-        }
-        catch (Exception exception) {
+        } catch (Exception exception) {
             System.out.println("Error: " + exception.getMessage());
         }
     }
@@ -38,4 +37,3 @@ public class BinaryFileCarRepository extends  FileRepository<UUID, Car> {
         }
     }
 }
-

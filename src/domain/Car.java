@@ -11,14 +11,33 @@ public class Car implements Identifiable<UUID>, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private final UUID carID;
+    private UUID carID;
     private String modelName;
     private int horsePower;
     private int numberSeats;
     private FuelType fuelType;
     private Colour colour;
 
+    public void setCarID(UUID carID) {
+        this.carID = carID;
+    }
+
     public static final ArrayList<Integer> VALID_NUMBER_SEATS = new ArrayList<>(Arrays.asList(2, 4, 5, 7));
+
+    public Car(UUID carID, String modelName, int horsePower, int numberSeats, FuelType fuelType, Colour colour) {
+        if (!VALID_NUMBER_SEATS.contains(numberSeats)){
+            throw new IllegalArgumentException("Incorrect value for 'numberSeats'.");
+        }
+        if (horsePower <= 0){
+            throw new IllegalArgumentException("Incorrect value for 'horsePower'");
+        }
+        this.carID = carID;
+        this.modelName = modelName;
+        this.horsePower = horsePower;
+        this.numberSeats = numberSeats;
+        this.fuelType = fuelType;
+        this.colour = colour;
+    }
 
 
     public Car(String modelName, int horsePower, int numberSeats, FuelType fuelType, Colour colour) {
