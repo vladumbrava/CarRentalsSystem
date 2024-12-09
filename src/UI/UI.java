@@ -213,7 +213,7 @@ public class UI {
 
     public void runShowReportsOption() {
         System.out.println("1. Show given make diesel cars descending by horsePower");
-        System.out.println("2. Show BMW or Audi gasoline cars that are two-seated");
+        System.out.println("2. Show given makes gasoline cars that are two-seated");
 
         System.out.println("Select report: ");
     }
@@ -225,7 +225,22 @@ public class UI {
     }
 
     public void runShowReportOption2() {
-        carService.printBMWorAudiTwoSeatedGasolineCars();
+        int count = 1;
+        boolean inputStop = false;
+        ArrayList<String> makes = new ArrayList<>();
+        while (!inputStop){
+            System.out.println("Enter make " + count + ": ");
+            System.out.println("Enter '0' when enough makes.");
+            String keyboardInput = scanner.nextLine();
+            if (keyboardInput.equals("0"))
+                inputStop = true;
+            else {
+                count++;
+                makes.add(keyboardInput);
+            }
+        }
+        carService.printGivenMakesTwoSeatedGasolineCars(makes.toArray(new String[0]));
+
     }
 
     public void run(){

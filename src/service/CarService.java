@@ -71,13 +71,12 @@ public class CarService {
                 .forEach(System.out::println);
     }
 
-    public void printBMWorAudiTwoSeatedGasolineCars() {
-        //get 2 seated cars, that are gasoline fueled, BMW or Audi
+    public void printGivenMakesTwoSeatedGasolineCars(String[] makes) {
         Car[] allCars = getAllCars().toArray(new Car[0]);
         Arrays.stream(allCars)
                 .filter(car -> car.getNumberSeats() == 2)
                 .filter(car -> car.getFuelType() == FuelType.gasoline)
-                .filter(car -> car.getModelName().startsWith("BMW") || car.getModelName().startsWith("Audi"))
+                .filter(car -> Arrays.stream(makes).anyMatch(make -> car.getModelName().startsWith(make)))
                 .forEach(System.out::println);
     }
 
