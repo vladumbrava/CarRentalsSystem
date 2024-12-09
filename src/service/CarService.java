@@ -7,6 +7,7 @@ import repository.IRepository;
 import validator.CarValidator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.UUID;
 
@@ -59,5 +60,15 @@ public class CarService {
         }
 
         return cars;
+    }
+
+    public void printVolkswagenDieselCarsDescendingByHorsePower() {
+        //get cars of fuel type diesel which have modelName 'volkswagen...' descending by horsepower
+        Car[] allCars = getAllCars().toArray(new Car[0]);
+        Arrays.stream(allCars)
+                .filter(car -> car.getModelName().startsWith("Volkswagen"))
+                .filter(car->car.getFuelType().equals(FuelType.diesel))
+                .sorted((car1, car2) -> car2.getHorsePower() - car1.getHorsePower())
+                .forEach(System.out::println);
     }
 }

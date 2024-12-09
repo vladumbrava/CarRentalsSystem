@@ -35,6 +35,8 @@ public class UI {
     private static final int SHOW_RENTALS_TIME_MORE_THAN_DURATION = 2;
     private static final int RENT_CAR_OPTION = 8;
     private static final int CANCEL_RENTAL_OPTION = 9;
+    private static final int REPORTS_OPTION = 10;
+    private static final int REPORT_1_OPTION = 1;
     private static final int EXIT_OPTION = 0;
 
     public UI(CarService carService, RentalService rentalService){
@@ -53,6 +55,7 @@ public class UI {
         System.out.println("7. Show filtered rentals");
         System.out.println("8. Rent a car");
         System.out.println("9. Cancel a rental");
+        System.out.println("10. Show reports");
         System.out.println("0. Exit");
     }
 
@@ -207,6 +210,16 @@ public class UI {
         System.out.println(filteredRentalService.getAllRentals());
     }
 
+    public void runShowReportsOption() {
+        System.out.println("1. Show volkswagen diesel cars descending by horsePower");
+
+        System.out.println("Select report: ");
+    }
+
+    public void runReport1Option() {
+        carService.printVolkswagenDieselCarsDescendingByHorsePower();
+    }
+
     public void run(){
         while (true){
             showMenu();
@@ -262,7 +275,7 @@ public class UI {
                             break;
                         }
                         default:{
-                            System.out.println("Rental filter option not matched");
+                            System.out.println("Rental filter option not matched.");
                         }
                     }
                     break;
@@ -281,6 +294,21 @@ public class UI {
                 }
                 case CANCEL_RENTAL_OPTION:{
                     runCancelRentalOption();
+                    break;
+                }
+                case REPORTS_OPTION:{
+                    runShowReportsOption();
+                    int userReportOption = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (userReportOption){
+                        case REPORT_1_OPTION:{
+                            runReport1Option();
+                            break;
+                        }
+                        default:{
+                            System.out.println("Report option not matched.");
+                        }
+                    }
                     break;
                 }
                 default:{
