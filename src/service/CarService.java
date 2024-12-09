@@ -80,4 +80,14 @@ public class CarService {
                 .forEach(System.out::println);
     }
 
+    public void printCarsModelNameOfGivenFuelTypeAndColourByHorsePower(FuelType fuelType, Colour colour) {
+        Car[] allCars = getAllCars().toArray(new Car[0]);
+        Arrays.stream(allCars)
+                .filter(car -> car.getFuelType().equals(fuelType))
+                .filter(car -> car.getColour().equals(colour))
+                .sorted((car1, car2) -> car2.getHorsePower() - car1.getHorsePower())
+                .map(Car::getModelName)
+                .forEach(System.out::println);
+    }
+
 }

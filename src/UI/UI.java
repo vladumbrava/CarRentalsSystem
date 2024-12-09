@@ -38,6 +38,7 @@ public class UI {
     private static final int REPORTS_OPTION = 10;
     private static final int REPORT_1_OPTION = 1;
     private static final int REPORT_2_OPTION = 2;
+    private static final int REPORT_3_OPTION = 3;
     private static final int EXIT_OPTION = 0;
 
     public UI(CarService carService, RentalService rentalService){
@@ -214,6 +215,7 @@ public class UI {
     public void runShowReportsOption() {
         System.out.println("1. Show given make diesel cars descending by horsePower");
         System.out.println("2. Show given makes gasoline cars that are two-seated");
+        System.out.println("3. Show the modelName of cars with given fuelType and colour");
 
         System.out.println("Select report: ");
     }
@@ -240,7 +242,16 @@ public class UI {
             }
         }
         carService.printGivenMakesTwoSeatedGasolineCars(makes.toArray(new String[0]));
+    }
 
+    public void runShowReportOption3() {
+        System.out.println("Enter fuelType: ");
+        String fuelTypeStr = scanner.nextLine();
+        FuelType fuelType = FuelType.valueOf(fuelTypeStr.toLowerCase());
+        System.out.println("Enter colour: ");
+        String colourStr = scanner.nextLine();
+        Colour colour = Colour.valueOf(colourStr.toLowerCase());
+        carService.printCarsModelNameOfGivenFuelTypeAndColourByHorsePower(fuelType,colour);
     }
 
     public void run(){
@@ -330,6 +341,10 @@ public class UI {
                         }
                         case REPORT_2_OPTION:{
                             runShowReportOption2();
+                            break;
+                        }
+                        case REPORT_3_OPTION:{
+                            runShowReportOption3();
                             break;
                         }
                         default:{
