@@ -1,5 +1,7 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -9,9 +11,13 @@ public class Rental implements Identifiable<UUID>, Serializable {
     @Serial
     private final static long serialVersionUID = 1L;
 
+    @JsonProperty("id")
     private UUID rentalID;
-    private final UUID carID;
+    private UUID carID;
     private LocalDate returnDate;
+
+    public Rental() {
+    }
 
     public void setRentalID(UUID rentalID) {
         this.rentalID = rentalID;

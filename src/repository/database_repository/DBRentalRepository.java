@@ -18,8 +18,6 @@ public class DBRentalRepository extends RentalRepository {
         readFromDB();
     }
 
-    //make adjustments to return date, in the database or in the code
-    //in line 30 and in line 50
     private void readFromDB() {
         try (Connection connection = DriverManager.getConnection(URL);
              PreparedStatement statement =
@@ -31,7 +29,6 @@ public class DBRentalRepository extends RentalRepository {
                 UUID carID = UUID.fromString(resultSet.getString(2));
                 long returnDateMillis = resultSet.getLong(3);
                 LocalDate returnDate = Instant.ofEpochMilli(returnDateMillis).atZone(ZoneId.systemDefault()).toLocalDate();
-//                LocalDate returnDate = resultSet.getDate(3).toLocalDate();
                 Rental newRental = new Rental(carID,returnDate);
                 newRental.setRentalID(rentalID);
                 this.map.put(rentalID,newRental);
@@ -52,7 +49,6 @@ public class DBRentalRepository extends RentalRepository {
             statement.setString(1,objectToAdd.getID().toString());
             statement.setString(2,objectToAdd.getCarID().toString());
             statement.setLong(3, objectToAdd.getReturnDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
-//            statement.setDate(3, Date.valueOf(objectToAdd.getReturnDate()));
             statement.executeUpdate();
         } catch (SQLException exception) {
             throw new RuntimeException(exception);

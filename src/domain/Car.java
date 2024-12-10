@@ -1,6 +1,8 @@
 package domain;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,12 +13,16 @@ public class Car implements Identifiable<UUID>, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @JsonProperty("id")
     private UUID carID;
     private String modelName;
     private int horsePower;
     private int numberSeats;
     private FuelType fuelType;
     private Colour colour;
+
+    public Car() {
+    }
 
     public void setCarID(UUID carID) {
         this.carID = carID;

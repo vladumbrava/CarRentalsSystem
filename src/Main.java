@@ -10,6 +10,8 @@ import repository.file_repository.TextFileRentalRepository;
 import repository.CarRepository;
 import repository.IRepository;
 import repository.RentalRepository;
+import repository.json_repository.JSONCarRepository;
+import repository.json_repository.JSONRentalRepository;
 import service.CarService;
 import UI.UI;
 import service.RentalService;
@@ -48,6 +50,8 @@ public class Main {
                 carRepository = new CarRepository();
             if (repoType.equals("database"))
                 carRepository = new DBCarRepository(repoPath);
+            if (repoType.equals("json"))
+                carRepository = new JSONCarRepository(repoPath);
 
             return carRepository;
 
@@ -76,6 +80,8 @@ public class Main {
                 rentalRepository = new RentalRepository();
             if (repoType.equals("database"))
                 rentalRepository = new DBRentalRepository(repoPath);
+            if (repoType.equals("json"))
+                rentalRepository = new JSONRentalRepository(repoPath);
 
             return rentalRepository;
 
