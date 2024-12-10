@@ -7,6 +7,7 @@ import validator.RentalValidator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.UUID;
 
@@ -70,5 +71,13 @@ public class RentalService {
         }
 
         return rentals;
+    }
+
+    public void printAllRentedCarsThatAreReturnedAtGivenDate(LocalDate returnDate) {
+        Rental[] allRentals = getAllRentals().toArray(new Rental[0]);
+        Arrays.stream(allRentals)
+                .filter(rental -> rental.getReturnDate().equals(returnDate))
+                .map(rental -> findRentedCarByCarID(rental.getCarID()).getModelName())
+                .forEach(System.out::println);
     }
 }

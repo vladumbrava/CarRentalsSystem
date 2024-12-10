@@ -39,6 +39,7 @@ public class UI {
     private static final int REPORT_1_OPTION = 1;
     private static final int REPORT_2_OPTION = 2;
     private static final int REPORT_3_OPTION = 3;
+    private static final int REPORT_4_OPTION = 4;
     private static final int EXIT_OPTION = 0;
 
     public UI(CarService carService, RentalService rentalService){
@@ -216,6 +217,7 @@ public class UI {
         System.out.println("1. Show given make diesel cars descending by horsePower");
         System.out.println("2. Show given makes gasoline cars that are two-seated");
         System.out.println("3. Show the modelName of cars with given fuelType and colour");
+        System.out.println("4. Show cars model name, for cars being return at given date");
 
         System.out.println("Select report: ");
     }
@@ -252,6 +254,21 @@ public class UI {
         String colourStr = scanner.nextLine();
         Colour colour = Colour.valueOf(colourStr.toLowerCase());
         carService.printCarsModelNameOfGivenFuelTypeAndColourByHorsePower(fuelType,colour);
+    }
+
+    public void runShowReportOption4() {
+        System.out.println("Enter date: ");
+        System.out.println("Day: ");
+        int day = scanner.nextInt();
+        System.out.println("Month: ");
+        int month = scanner.nextInt();
+        System.out.println("Year: ");
+        int year = scanner.nextInt();
+        LocalDate date = LocalDate.of(year,month,day);
+        if(date.isBefore(LocalDate.now())){
+            throw new IllegalArgumentException("Invalid date. Please enter a date in the future.");
+        }
+        rentalService.printAllRentedCarsThatAreReturnedAtGivenDate(date);
     }
 
     public void run(){
@@ -345,6 +362,10 @@ public class UI {
                         }
                         case REPORT_3_OPTION:{
                             runShowReportOption3();
+                            break;
+                        }
+                        case REPORT_4_OPTION:{
+                            runShowReportOption4();
                             break;
                         }
                         default:{
