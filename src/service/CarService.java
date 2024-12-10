@@ -38,8 +38,6 @@ public class CarService {
     }
 
     public UUID findCarIDbyModelName(String modelNameUsedToFindID){
-        //iterate through the car repository map in order to find the key(the id),
-        //by the value's (car) attribute modelName, return the id
         UUID carIDToFind = null;
         Iterator<Car> carIterator = carRepo.iterator();
         while (carIterator.hasNext()){

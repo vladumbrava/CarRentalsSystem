@@ -40,6 +40,7 @@ public class UI {
     private static final int REPORT_2_OPTION = 2;
     private static final int REPORT_3_OPTION = 3;
     private static final int REPORT_4_OPTION = 4;
+    private static final int REPORT_5_OPTION = 5;
     private static final int EXIT_OPTION = 0;
 
     public UI(CarService carService, RentalService rentalService){
@@ -218,7 +219,7 @@ public class UI {
         System.out.println("2. Show given makes gasoline cars that are two-seated");
         System.out.println("3. Show the modelName of cars with given fuelType and colour");
         System.out.println("4. Show cars model name, for cars being return at given date");
-
+        System.out.println("5. Show available cars model name (alphabetically), for cars of given fuelType");
         System.out.println("Select report: ");
     }
 
@@ -269,6 +270,13 @@ public class UI {
             throw new IllegalArgumentException("Invalid date. Please enter a date in the future.");
         }
         rentalService.printAllRentedCarsThatAreReturnedAtGivenDate(date);
+    }
+
+    public void runShowReportOption5() {
+        System.out.println("Enter fuelType: ");
+        String fuelTypeStr = scanner.nextLine();
+        FuelType fuelType = FuelType.valueOf(fuelTypeStr.toLowerCase());
+        rentalService.printAllAvailableCarsOfFuelTypeSortedAlphabetically(fuelType);
     }
 
     public void run(){
@@ -366,6 +374,10 @@ public class UI {
                         }
                         case REPORT_4_OPTION:{
                             runShowReportOption4();
+                            break;
+                        }
+                        case REPORT_5_OPTION:{
+                            runShowReportOption5();
                             break;
                         }
                         default:{

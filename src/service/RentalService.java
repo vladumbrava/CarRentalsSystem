@@ -1,15 +1,13 @@
 package service;
 
 import domain.Car;
+import domain.FuelType;
 import domain.Rental;
 import repository.IRepository;
 import validator.RentalValidator;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.UUID;
+import java.util.*;
 
 public class RentalService {
     private final IRepository<UUID, Rental> rentalRepo;
@@ -42,9 +40,6 @@ public class RentalService {
     }
 
     public Car findRentedCarByCarID(UUID carID){
-        //we must iterate through the rentalRepo, if we find a rental with the carID specified,
-        //we then iterate through the carRepo, in order to find the car object with that carID
-        //we return the car object
         Car rentedCar = null;
         Iterator<Rental> rentalIterator = rentalRepo.iterator();
         while (rentalIterator.hasNext()){
@@ -78,6 +73,33 @@ public class RentalService {
         Arrays.stream(allRentals)
                 .filter(rental -> rental.getReturnDate().equals(returnDate))
                 .map(rental -> findRentedCarByCarID(rental.getCarID()).getModelName())
+                .forEach(System.out::println);
+    }
+
+    public void printAllAvailableCarsOfFuelTypeSortedAlphabetically(FuelType fuelType) {
+        ArrayList<Car> allAvailableCarsList = new ArrayList<>();
+        ArrayList<Rental> allRentals = getAllRentals();
+        Iterator<Rental> rentalIterator = allRentals.iterator();
+        Iterator<Car> carIterator = carRepo.iterator();
+        while (carIterator.hasNext()){
+            Car car = carIterator.next();
+            boolean isAvailable = true;
+            while (rentalIterator.hasNext()){
+                Rental rental = rentalIterator.next();
+                if (rental.getCarID().equals(car.getID())){
+                    isAvailable = false;
+                }
+            }
+            if (isAvailable){
+                allAvailableCarsList.add(car);
+            }
+        }
+        Car[] allAvailableCars = allAvailableCarsList.toArray(new Car[0]);
+
+        Arrays.stream(allAvailableCars)
+                .filter(car -> car.getFuelType().equals(fuelType))
+                .sorted(Comparator.comparing(Car::getModelName))
+                .map(Car::getModelName)
                 .forEach(System.out::println);
     }
 }
