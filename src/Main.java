@@ -12,6 +12,8 @@ import repository.IRepository;
 import repository.RentalRepository;
 import repository.json_repository.JSONCarRepository;
 import repository.json_repository.JSONRentalRepository;
+import repository.xml_repository.XMLCarRepository;
+import repository.xml_repository.XMLRentalRepository;
 import service.CarService;
 import UI.UI;
 import service.RentalService;
@@ -52,6 +54,8 @@ public class Main {
                 carRepository = new DBCarRepository(repoPath);
             if (repoType.equals("json"))
                 carRepository = new JSONCarRepository(repoPath);
+            if (repoType.equals("xml"))
+                carRepository = new XMLCarRepository(repoPath);
 
             return carRepository;
 
@@ -82,6 +86,8 @@ public class Main {
                 rentalRepository = new DBRentalRepository(repoPath);
             if (repoType.equals("json"))
                 rentalRepository = new JSONRentalRepository(repoPath);
+            if (repoType.equals("xml"))
+                rentalRepository = new XMLRentalRepository(repoPath);
 
             return rentalRepository;
 
