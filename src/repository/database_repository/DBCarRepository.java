@@ -64,6 +64,14 @@ public class DBCarRepository extends CarRepository {
     @Override
     public void delete(UUID idToDelete) {
         super.delete(idToDelete);
+        try (Connection connection = DriverManager.getConnection(URL);
+             PreparedStatement statement = connection.prepareStatement(
+                     "DELETE FROM Cars WHERE id = ?")) {
+            statement.setString(1, idToDelete.toString());
+            statement.executeUpdate();
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
+        }
     }
 
     @Override

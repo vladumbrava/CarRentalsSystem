@@ -1,21 +1,25 @@
+package GUI;
 
 import domain.Car;
 import domain.Rental;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import repository.CarRepository;
+import repository.IRepository;
+import repository.RentalRepository;
 import repository.database_repository.DBCarRepository;
 import repository.database_repository.DBRentalRepository;
 import repository.file_repository.BinaryFileCarRepository;
 import repository.file_repository.BinaryFileRentalRepository;
 import repository.file_repository.TextFileCarRepository;
 import repository.file_repository.TextFileRentalRepository;
-import repository.CarRepository;
-import repository.IRepository;
-import repository.RentalRepository;
 import repository.json_repository.JSONCarRepository;
 import repository.json_repository.JSONRentalRepository;
 import repository.xml_repository.XMLCarRepository;
 import repository.xml_repository.XMLRentalRepository;
 import service.CarService;
-import UI.UI;
 import service.RentalService;
 
 import java.io.FileReader;
@@ -23,18 +27,29 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.UUID;
 
-public class Main {
-    public static void main(String[] args) {
+public class MainGUI extends Application {
+
+    @Override
+    public void start(Stage stage) throws Exception {
         IRepository<UUID, Car> carRepo = setCarRepositoryImplementation();
         IRepository<UUID, Rental> rentalRepo = setRentalRepositoryImplementation();
-        
+
         CarService carService = new CarService(carRepo);
-        RentalService rentalService = new RentalService(rentalRepo,carRepo);
-        UI ui = new UI(carService,rentalService);
-        ui.run();
+        RentalService rentalService = new RentalService(rentalRepo, carRepo);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CarRentalsGUI.fxml"));
+        fxmlLoader.setControllerFactory(_ -> new CarRentalsGUIController(carService, rentalService));
+
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
     }
 
-    private static IRepository<UUID, Car> setCarRepositoryImplementation () {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    private static IRepository<UUID, Car> setCarRepositoryImplementation() {
         Properties prop = new Properties();
         IRepository<UUID, Car> carRepository = null;
 
@@ -66,7 +81,7 @@ public class Main {
         return new CarRepository();
     }
 
-    private static IRepository<UUID, Rental> setRentalRepositoryImplementation () {
+    private static IRepository<UUID, Rental> setRentalRepositoryImplementation() {
         Properties prop = new Properties();
         IRepository<UUID, Rental> rentalRepository = null;
 
