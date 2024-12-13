@@ -146,8 +146,8 @@ public class CarRentalsGUIController {
                 new FilterRentalInProgressAtDate(LocalDate.now()),
                 new FilterRentalTimeMoreThanDuration(Duration.ZERO)
         ));
-        carReportsComboBox.setItems(FXCollections.observableArrayList(1,2,3,5));
-        rentalReportsComboBox.setItems(FXCollections.observableArrayList(4));
+        carReportsComboBox.setItems(FXCollections.observableArrayList(1,2));
+        rentalReportsComboBox.setItems(FXCollections.observableArrayList(3,4,5));
         initializeOrUpdateListViews();
     }
 
@@ -249,7 +249,7 @@ public class CarRentalsGUIController {
     private ListView<Car> reportedCarsListView;
 
     @FXML
-    private ListView<Rental> reportedRentalsListView;
+    private ListView<String> reportedStringsListView;
 
     @FXML
     private Button reportCarsButton;
@@ -270,7 +270,7 @@ public class CarRentalsGUIController {
     private TextField carColourTextFieldToReport;
 
     @FXML
-    private Button reportRentalsButton;
+    private Button reportStringsButton;
 
     @FXML
     private ComboBox<Integer> rentalReportsComboBox;
@@ -313,7 +313,35 @@ public class CarRentalsGUIController {
     }
 
     @FXML
-    public void reportRentalsButtonHandler() {
+    public void reportStringsButtonHandler() {
+        int selectedReport = carReportsComboBox.getValue();
+        ArrayList<String> reportedStrings = new ArrayList<>();
 
+        switch (selectedReport) {
+            case 3:
+                FuelType fuelType = FuelType.valueOf(carFuelTypeTextFieldToReport.getText().toLowerCase());
+                Colour colour = Colour.valueOf(carColourTextFieldToReport.getText().toLowerCase());
+                reportedStrings = carService.getCarsModelNameOfGivenFuelTypeAndColourByHorsePower(fuelType,colour);
+                break;
+            case 4:
+                int day = Integer.parseInt(rentalDayTextFieldToReport.getText());
+                int month = Integer.parseInt(rentalMonthTextFieldToReport.getText());
+                int year = Integer.parseInt(rentalYearTextFieldToReport.getText());
+                LocalDate date = LocalDate.of(year, month, day);
+                reportedStrings = rentalService.getAllRentedCarsThatAreReturnedAtGivenDate(date);
+                break;
+            case 5:
+                FuelType fuelTypeReport5 = FuelType.valueOf(availableCarFuelTypeTextFieldToReport.getText().toLowerCase());
+                reportedStrings = rentalService.getAllAvailableCarsOfFuelTypeSortedAlphabetically(fuelTypeReport5);
+                break;
+            default:
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Invalid Report Type");
+                alert.setContentText("Please select a valid report type.");
+                alert.showAndWait();
+                return;
+        }
+        reportedStringsListView.setItems(FXCollections.observableArrayList(reportedStrings));
     }
 }
