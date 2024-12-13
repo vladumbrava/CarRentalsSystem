@@ -226,7 +226,7 @@ public class UI {
     public void runShowReportOption1() {
         System.out.println("Enter make: ");
         String make = scanner.nextLine();
-        carService.printGivenMakeDieselCarsDescendingByHorsePower(make);
+        System.out.println(carService.getGivenMakeDieselCarsDescendingByHorsePower(make));
     }
 
     public void runShowReportOption2() {
@@ -244,7 +244,7 @@ public class UI {
                 makes.add(keyboardInput);
             }
         }
-        carService.printGivenMakesTwoSeatedGasolineCars(makes.toArray(new String[0]));
+        System.out.println(carService.getGivenMakesTwoSeatedGasolineCars(makes.toArray(new String[0])));
     }
 
     public void runShowReportOption3() {
@@ -254,7 +254,7 @@ public class UI {
         System.out.println("Enter colour: ");
         String colourStr = scanner.nextLine();
         Colour colour = Colour.valueOf(colourStr.toLowerCase());
-        carService.printCarsModelNameOfGivenFuelTypeAndColourByHorsePower(fuelType,colour);
+        System.out.println(carService.getCarsModelNameOfGivenFuelTypeAndColourByHorsePower(fuelType,colour));
     }
 
     public void runShowReportOption4() {
@@ -269,14 +269,14 @@ public class UI {
         if(date.isBefore(LocalDate.now())){
             throw new IllegalArgumentException("Invalid date. Please enter a date in the future.");
         }
-        rentalService.printAllRentedCarsThatAreReturnedAtGivenDate(date);
+        System.out.println(rentalService.getAllRentedCarsThatAreReturnedAtGivenDate(date));
     }
 
     public void runShowReportOption5() {
         System.out.println("Enter fuelType: ");
         String fuelTypeStr = scanner.nextLine();
         FuelType fuelType = FuelType.valueOf(fuelTypeStr.toLowerCase());
-        rentalService.printAllAvailableCarsOfFuelTypeSortedAlphabetically(fuelType);
+        System.out.println(rentalService.getAllAvailableCarsOfFuelTypeSortedAlphabetically(fuelType));
     }
 
     public void run(){

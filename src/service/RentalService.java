@@ -68,17 +68,20 @@ public class RentalService {
         return rentals;
     }
 
-    public void printAllRentedCarsThatAreReturnedAtGivenDate(LocalDate returnDate) {
+    public ArrayList<String> getAllRentedCarsThatAreReturnedAtGivenDate(LocalDate returnDate) {
         Rental[] allRentals = getAllRentals().toArray(new Rental[0]);
+        ArrayList<String> result = new ArrayList<>();
         Arrays.stream(allRentals)
                 .filter(rental -> rental.getReturnDate().equals(returnDate))
                 .map(rental -> findRentedCarByCarID(rental.getCarID()).getModelName())
-                .forEach(System.out::println);
+                .forEach(result::add);
+        return result;
     }
 
-    public void printAllAvailableCarsOfFuelTypeSortedAlphabetically(FuelType fuelType) {
+    public ArrayList<String> getAllAvailableCarsOfFuelTypeSortedAlphabetically(FuelType fuelType) {
         ArrayList<Car> allAvailableCarsList = new ArrayList<>();
         ArrayList<Rental> allRentals = getAllRentals();
+        ArrayList<String> result = new ArrayList<>();
         Iterator<Rental> rentalIterator = allRentals.iterator();
         Iterator<Car> carIterator = carRepo.iterator();
         while (carIterator.hasNext()){
@@ -100,6 +103,7 @@ public class RentalService {
                 .filter(car -> car.getFuelType().equals(fuelType))
                 .sorted(Comparator.comparing(Car::getModelName))
                 .map(Car::getModelName)
-                .forEach(System.out::println);
+                .forEach(result::add);
+        return result;
     }
 }

@@ -60,32 +60,37 @@ public class CarService {
         return cars;
     }
 
-    public void printGivenMakeDieselCarsDescendingByHorsePower(String make) {
+    public ArrayList<Car> getGivenMakeDieselCarsDescendingByHorsePower(String make) {
         Car[] allCars = getAllCars().toArray(new Car[0]);
+        ArrayList<Car> result = new ArrayList<>();
         Arrays.stream(allCars)
                 .filter(car -> car.getModelName().startsWith(make))
                 .filter(car->car.getFuelType().equals(FuelType.diesel))
                 .sorted((car1, car2) -> car2.getHorsePower() - car1.getHorsePower())
-                .forEach(System.out::println);
+                .forEach(result::add);
+        return result;
     }
 
-    public void printGivenMakesTwoSeatedGasolineCars(String[] makes) {
+    public ArrayList<Car> getGivenMakesTwoSeatedGasolineCars(String[] makes) {
         Car[] allCars = getAllCars().toArray(new Car[0]);
+        ArrayList<Car> result = new ArrayList<>();
         Arrays.stream(allCars)
                 .filter(car -> car.getNumberSeats() == 2)
                 .filter(car -> car.getFuelType() == FuelType.gasoline)
                 .filter(car -> Arrays.stream(makes).anyMatch(make -> car.getModelName().startsWith(make)))
-                .forEach(System.out::println);
+                .forEach(result::add);
+        return result;
     }
 
-    public void printCarsModelNameOfGivenFuelTypeAndColourByHorsePower(FuelType fuelType, Colour colour) {
+    public ArrayList<String> getCarsModelNameOfGivenFuelTypeAndColourByHorsePower(FuelType fuelType, Colour colour) {
         Car[] allCars = getAllCars().toArray(new Car[0]);
+        ArrayList<String> result = new ArrayList<>();
         Arrays.stream(allCars)
                 .filter(car -> car.getFuelType().equals(fuelType))
                 .filter(car -> car.getColour().equals(colour))
                 .sorted((car1, car2) -> car2.getHorsePower() - car1.getHorsePower())
                 .map(Car::getModelName)
-                .forEach(System.out::println);
+                .forEach(result::add);
+        return result;
     }
-
 }

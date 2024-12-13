@@ -17,13 +17,13 @@
    <ComboBox fx:id="carColourComboBox" layoutX="492.0" layoutY="177.0" prefHeight="26.0" prefWidth="79.0" promptText="Colour" />
    <Button fx:id="deleteCarButton" layoutX="854.0" layoutY="177.0" mnemonicParsing="false" onAction="#deleteCarButtonHandler" text="Delete Car" />
    <TextField fx:id="carModelNameTextFieldToDelete" layoutX="685.0" layoutY="177.0" promptText="Model Name" />
-   <TextField fx:id="carModelNameTextFieldToRent" layoutX="314.0" layoutY="210.0" promptText="Model Name" />
-   <Button fx:id="rentCarButton" layoutX="480.0" layoutY="255.0" mnemonicParsing="false" onAction="#rentCarButtonHandler" text="Rent a car" />
-   <TextField fx:id="rentalReturnDayTextField" layoutX="315.0" layoutY="242.0" promptText="Day" />
-   <TextField fx:id="rentalReturnMonthTextField" layoutX="315.0" layoutY="272.0" promptText="Month" />
-   <TextField fx:id="rentalReturnYearTextField" layoutX="315.0" layoutY="304.0" promptText="Year" />
-   <TextField fx:id="carModelNameTextFieldToCancelRental" layoutX="316.0" layoutY="349.0" promptText="Model Name" />
-   <Button fx:id="cancelRentalButton" layoutX="472.0" layoutY="349.0" mnemonicParsing="false" onAction="#cancelRentalButtonHandler" text="Cancel rental" />
+   <TextField fx:id="carModelNameTextFieldToRent" layoutX="314.0" layoutY="210.0" prefHeight="25.0" prefWidth="86.0" promptText="Model Name" />
+   <Button fx:id="rentCarButton" layoutX="418.0" layoutY="255.0" mnemonicParsing="false" onAction="#rentCarButtonHandler" text="Rent a car" />
+   <TextField fx:id="rentalReturnDayTextField" layoutX="315.0" layoutY="242.0" prefHeight="25.0" prefWidth="86.0" promptText="Day" />
+   <TextField fx:id="rentalReturnMonthTextField" layoutX="315.0" layoutY="272.0" prefHeight="25.0" prefWidth="86.0" promptText="Month" />
+   <TextField fx:id="rentalReturnYearTextField" layoutX="315.0" layoutY="304.0" prefHeight="25.0" prefWidth="86.0" promptText="Year" />
+   <TextField fx:id="carModelNameTextFieldToCancelRental" layoutX="316.0" layoutY="349.0" prefHeight="25.0" prefWidth="86.0" promptText="Model Name" />
+   <Button fx:id="cancelRentalButton" layoutX="410.0" layoutY="349.0" mnemonicParsing="false" onAction="#cancelRentalButtonHandler" text="Cancel rental" />
    <ListView fx:id="filteredCarsListView" layoutX="335.0" layoutY="14.0" prefHeight="151.0" prefWidth="179.0" />
    <ListView fx:id="filteredRentalsListView" layoutX="655.0" layoutY="14.0" prefHeight="151.0" prefWidth="179.0" />
    <ComboBox fx:id="carFilterComboBox" layoutX="532.0" layoutY="55.0" prefHeight="26.0" prefWidth="108.0" promptText="Filters" />
@@ -37,4 +37,18 @@
    <TextField fx:id="rentalMonthTextFieldToFilter" layoutX="842.0" layoutY="115.0" prefHeight="25.0" prefWidth="59.0" promptText="Month" />
    <TextField fx:id="rentalYearTextFieldToFilter" layoutX="842.0" layoutY="140.0" prefHeight="25.0" prefWidth="59.0" promptText="Year" />
    <TextField fx:id="rentalDurationTextFieldToFilter" layoutX="917.0" layoutY="115.0" prefHeight="25.0" prefWidth="59.0" promptText="Duration" />
+   <ListView fx:id="reportedCarsListView" layoutX="521.0" layoutY="213.0" prefHeight="175.0" prefWidth="130.0" />
+   <ListView fx:id="reportedRentalsListView" layoutX="760.0" layoutY="213.0" prefHeight="137.0" prefWidth="130.0" />
+   <Button fx:id="reportCarsButton" layoutX="667.0" layoutY="213.0" mnemonicParsing="false" onAction="#reportCarsButtonHandler" text="Car Reports" />
+   <ComboBox fx:id="carReportsComboBox" layoutX="664.0" layoutY="242.0" prefHeight="25.0" prefWidth="84.0" promptText="Reports" />
+   <Button fx:id="reportRentalsButton" layoutX="900.0" layoutY="213.0" mnemonicParsing="false" onAction="#reportRentalsButtonHandler" text="Rental Reports" />
+   <ComboBox fx:id="rentalReportsComboBox" layoutX="905.0" layoutY="243.0" prefHeight="25.0" prefWidth="84.0" promptText="Reports" />
+   <TextField fx:id="carMakeTextFieldToReport" layoutX="664.0" layoutY="272.0" prefHeight="25.0" prefWidth="84.0" promptText="Make" />
+   <TextField fx:id="carMultipleMakesTextFieldToReport" layoutX="664.0" layoutY="304.0" prefHeight="25.0" prefWidth="84.0" promptText="Makes" />
+   <TextField fx:id="carFuelTypeTextFieldToReport" layoutX="664.0" layoutY="337.0" prefHeight="25.0" prefWidth="84.0" promptText="FuelType" />
+   <TextField fx:id="carColourTextFieldToReport" layoutX="664.0" layoutY="362.0" prefHeight="25.0" prefWidth="84.0" promptText="Colour" />
+   <TextField fx:id="rentalDayTextFieldToReport" layoutX="905.0" layoutY="272.0" prefHeight="25.0" prefWidth="84.0" promptText="Day" />
+   <TextField fx:id="rentalMonthTextFieldToReport" layoutX="905.0" layoutY="298.0" prefHeight="25.0" prefWidth="84.0" promptText="Month" />
+   <TextField fx:id="rentalYearTextFieldToReport" layoutX="905.0" layoutY="325.0" prefHeight="25.0" prefWidth="84.0" promptText="Year" />
+   <TextField fx:id="availableCarFuelTypeTextFieldToReport" layoutX="776.0" layoutY="362.0" prefHeight="25.0" prefWidth="84.0" promptText="FuelType" />
 </AnchorPane>

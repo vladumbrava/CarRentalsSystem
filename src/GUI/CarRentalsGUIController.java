@@ -146,6 +146,8 @@ public class CarRentalsGUIController {
                 new FilterRentalInProgressAtDate(LocalDate.now()),
                 new FilterRentalTimeMoreThanDuration(Duration.ZERO)
         ));
+        carReportsComboBox.setItems(FXCollections.observableArrayList(1,2,3,5));
+        rentalReportsComboBox.setItems(FXCollections.observableArrayList(4));
         initializeOrUpdateListViews();
     }
 
@@ -207,7 +209,7 @@ public class CarRentalsGUIController {
             int horsePower = Integer.parseInt(carHorsePowerTextFieldToFilter.getText());
             selectedFilter = new FilterCarByHorsePower(horsePower);
         } else if (selectedFilter instanceof FilterCarByFuelType) {
-            FuelType fuelType = FuelType.valueOf(carFuelTypeTextFieldToFilter.getText().toUpperCase());
+            FuelType fuelType = FuelType.valueOf(carFuelTypeTextFieldToFilter.getText().toLowerCase());
             selectedFilter = new FilterCarByFuelType(fuelType);
         }
 
@@ -241,5 +243,77 @@ public class CarRentalsGUIController {
             }
         }
         filteredRentalsListView.setItems(FXCollections.observableArrayList(filteredRentals));
+    }
+
+    @FXML
+    private ListView<Car> reportedCarsListView;
+
+    @FXML
+    private ListView<Rental> reportedRentalsListView;
+
+    @FXML
+    private Button reportCarsButton;
+
+    @FXML
+    private ComboBox<Integer> carReportsComboBox;
+
+    @FXML
+    private TextField carMakeTextFieldToReport;
+
+    @FXML
+    private TextField carMultipleMakesTextFieldToReport;
+
+    @FXML
+    private TextField carFuelTypeTextFieldToReport;
+
+    @FXML
+    private TextField carColourTextFieldToReport;
+
+    @FXML
+    private Button reportRentalsButton;
+
+    @FXML
+    private ComboBox<Integer> rentalReportsComboBox;
+
+    @FXML
+    private TextField rentalDayTextFieldToReport;
+
+    @FXML
+    private TextField rentalMonthTextFieldToReport;
+
+    @FXML
+    private TextField rentalYearTextFieldToReport;
+
+    @FXML
+    private TextField availableCarFuelTypeTextFieldToReport;
+
+    @FXML
+    public void reportCarsButtonHandler() {
+        int selectedReport = carReportsComboBox.getValue();
+        ArrayList<Car> reportedCars = new ArrayList<>();
+
+        switch (selectedReport) {
+            case 1:
+                String make = carMakeTextFieldToReport.getText();
+                reportedCars = carService.getGivenMakeDieselCarsDescendingByHorsePower(make);
+                break;
+            case 2:
+                String[] makes = carMultipleMakesTextFieldToReport.getText().split(",");
+                reportedCars = carService.getGivenMakesTwoSeatedGasolineCars(makes);
+                break;
+            default:
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Invalid Report Type");
+                alert.setContentText("Please select a valid report type.");
+                alert.showAndWait();
+                return;
+        }
+        reportedCarsListView.setItems(FXCollections.observableArrayList(reportedCars));
+    }
+
+    @FXML
+    public void reportRentalsButtonHandler() {
+
     }
 }
