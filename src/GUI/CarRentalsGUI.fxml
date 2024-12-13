@@ -42,7 +42,7 @@
    <Button fx:id="reportCarsButton" layoutX="667.0" layoutY="213.0" mnemonicParsing="false" onAction="#reportCarsButtonHandler" text="Car Reports" />
    <ComboBox fx:id="carReportsComboBox" layoutX="664.0" layoutY="242.0" prefHeight="25.0" prefWidth="84.0" promptText="Reports" />
    <Button fx:id="reportStringsButton" layoutX="900.0" layoutY="213.0" mnemonicParsing="false" onAction="#reportStringsButtonHandler" text="String Reports" />
-   <ComboBox fx:id="rentalReportsComboBox" layoutX="905.0" layoutY="243.0" prefHeight="25.0" prefWidth="84.0" promptText="Reports" />
+   <ComboBox fx:id="stringReportsComboBox" layoutX="905.0" layoutY="243.0" prefHeight="25.0" prefWidth="84.0" promptText="Reports" />
    <TextField fx:id="carMakeTextFieldToReport" layoutX="664.0" layoutY="272.0" prefHeight="25.0" prefWidth="84.0" promptText="Make" />
    <TextField fx:id="carMultipleMakesTextFieldToReport" layoutX="664.0" layoutY="304.0" prefHeight="25.0" prefWidth="84.0" promptText="Makes" />
    <TextField fx:id="carFuelTypeTextFieldToReport" layoutX="664.0" layoutY="337.0" prefHeight="25.0" prefWidth="84.0" promptText="FuelType" />

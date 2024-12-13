@@ -147,7 +147,7 @@ public class CarRentalsGUIController {
                 new FilterRentalTimeMoreThanDuration(Duration.ZERO)
         ));
         carReportsComboBox.setItems(FXCollections.observableArrayList(1,2));
-        rentalReportsComboBox.setItems(FXCollections.observableArrayList(3,4,5));
+        stringReportsComboBox.setItems(FXCollections.observableArrayList(3,4,5));
         initializeOrUpdateListViews();
     }
 
@@ -273,7 +273,7 @@ public class CarRentalsGUIController {
     private Button reportStringsButton;
 
     @FXML
-    private ComboBox<Integer> rentalReportsComboBox;
+    private ComboBox<Integer> stringReportsComboBox;
 
     @FXML
     private TextField rentalDayTextFieldToReport;
@@ -314,7 +314,7 @@ public class CarRentalsGUIController {
 
     @FXML
     public void reportStringsButtonHandler() {
-        int selectedReport = carReportsComboBox.getValue();
+        int selectedReport = stringReportsComboBox.getValue();
         ArrayList<String> reportedStrings = new ArrayList<>();
 
         switch (selectedReport) {
