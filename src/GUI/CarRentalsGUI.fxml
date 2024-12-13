@@ -7,14 +7,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CarRentalsGUIController">
-   <ListView fx:id="carListView" layoutX="14.0" layoutY="14.0" prefHeight="151.0" prefWidth="600.0" />
+   <ListView fx:id="carListView" layoutX="14.0" layoutY="14.0" prefHeight="151.0" prefWidth="294.0" />
    <ListView fx:id="rentalListView" layoutX="14.0" layoutY="210.0" prefHeight="175.0" prefWidth="293.0" />
-   <Button fx:id="addCarButton" layoutX="584.0" layoutY="177.0" mnemonicParsing="false" onAction="#addCarButtonHandler" text="Add Car" />
+   <Button fx:id="addCarButton" layoutX="602.0" layoutY="177.0" mnemonicParsing="false" onAction="#addCarButtonHandler" text="Add Car" />
    <TextField fx:id="carModelNameTextField" layoutX="14.0" layoutY="177.0" prefHeight="26.0" prefWidth="114.0" promptText="Model Name" />
    <TextField fx:id="carHorsePowerTextField" layoutX="143.0" layoutY="177.0" prefHeight="26.0" prefWidth="86.0" promptText="Horse Power" />
    <ComboBox fx:id="carNumberSeatsComboBox" layoutX="242.0" layoutY="177.0" promptText="Number of seats" />
    <ComboBox fx:id="carFuelTypeComboBox" layoutX="386.0" layoutY="177.0" promptText="Fuel Type" />
    <ComboBox fx:id="carColourComboBox" layoutX="492.0" layoutY="177.0" prefHeight="26.0" prefWidth="79.0" promptText="Colour" />
-   <Button fx:id="deleteCarButton" layoutX="800.0" layoutY="20.0" mnemonicParsing="false" onAction="#deleteCarButtonHandler" text="Delete Car" />
-   <TextField fx:id="carModelNameTextFieldToDelete" layoutX="628.0" layoutY="20.0" promptText="Model Name" />
+   <Button fx:id="deleteCarButton" layoutX="854.0" layoutY="177.0" mnemonicParsing="false" onAction="#deleteCarButtonHandler" text="Delete Car" />
+   <TextField fx:id="carModelNameTextFieldToDelete" layoutX="685.0" layoutY="177.0" promptText="Model Name" />
+   <TextField fx:id="carModelNameTextFieldToRent" layoutX="314.0" layoutY="210.0" promptText="Model Name" />
+   <Button fx:id="rentCarButton" layoutX="480.0" layoutY="255.0" mnemonicParsing="false" onAction="#rentCarButtonHandler" text="Rent a car" />
+   <TextField fx:id="rentalReturnDayTextField" layoutX="315.0" layoutY="242.0" promptText="Day" />
+   <TextField fx:id="rentalReturnMonthTextField" layoutX="315.0" layoutY="272.0" promptText="Month" />
+   <TextField fx:id="rentalReturnYearTextField" layoutX="315.0" layoutY="304.0" promptText="Year" />
+   <TextField fx:id="carModelNameTextFieldToCancelRental" layoutX="316.0" layoutY="349.0" promptText="Model Name" />
+   <Button fx:id="cancelRentalButton" layoutX="472.0" layoutY="349.0" mnemonicParsing="false" onAction="#cancelRentalButtonHandler" text="Cancel rental" />
+   <ListView fx:id="filteredCarsListView" layoutX="335.0" layoutY="14.0" prefHeight="151.0" prefWidth="179.0" />
+   <ListView fx:id="filteredRentalsListView" layoutX="655.0" layoutY="14.0" prefHeight="151.0" prefWidth="179.0" />
+   <ComboBox fx:id="carFilterComboBox" layoutX="532.0" layoutY="55.0" prefHeight="26.0" prefWidth="108.0" promptText="Filters" />
+   <TextField fx:id="carNumberOfSeatsTextFieldToFilter" layoutX="532.0" layoutY="90.0" prefHeight="26.0" prefWidth="108.0" promptText="Number of Seats" />
+   <TextField fx:id="carHorsePowerTextFieldToFilter" layoutX="532.0" layoutY="115.0" prefHeight="25.0" prefWidth="108.0" promptText="Horse Power" />
+   <TextField fx:id="carFuelTypeTextFieldToFilter" layoutX="532.0" layoutY="140.0" prefHeight="25.0" prefWidth="108.0" promptText="Fuel Type" />
+   <Button fx:id="filterCarsButton" layoutX="552.0" layoutY="14.0" mnemonicParsing="false" onAction="#filterCarsButtonHandler" text="Filter Cars" />
+   <Button fx:id="filterRentalsButton" layoutX="875.0" layoutY="14.0" mnemonicParsing="false" onAction="#filterRentalsButtonHandler" text="Filter Rentals" />
+   <ComboBox fx:id="rentalFilterComboBox" layoutX="866.0" layoutY="56.0" prefHeight="25.0" prefWidth="99.0" promptText="Filters" />
+   <TextField fx:id="rentalDayTextFieldToFilter" layoutX="842.0" layoutY="91.0" prefHeight="25.0" prefWidth="59.0" promptText="Day" />
+   <TextField fx:id="rentalMonthTextFieldToFilter" layoutX="842.0" layoutY="115.0" prefHeight="25.0" prefWidth="59.0" promptText="Month" />
+   <TextField fx:id="rentalYearTextFieldToFilter" layoutX="842.0" layoutY="140.0" prefHeight="25.0" prefWidth="59.0" promptText="Year" />
+   <TextField fx:id="rentalDurationTextFieldToFilter" layoutX="917.0" layoutY="115.0" prefHeight="25.0" prefWidth="59.0" promptText="Duration" />
 </AnchorPane>
